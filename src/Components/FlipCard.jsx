@@ -55,6 +55,20 @@ const FlipCard = () => {
         resetBoard();
       }
 
+      const unFlipCards = (firstCard, secondCard) => {
+        setLockBoard(true);
+        setTimeout(() => {
+          firstCard.classList.remove('flip');
+          secondCard.classList.remove('flip');
+          resetBoard();
+        }, 1000);
+      }
+    
+      const resetBoard = () => {
+        setHasFlippedCards(false);
+        setLockBoard(false);
+        setFirstCard(null);
+      }
 
 
   return (
