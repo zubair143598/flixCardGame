@@ -70,6 +70,10 @@ const FlipCard = () => {
         setFirstCard(null);
       }
 
+      function handleClick() {
+        window.location.reload();
+      }
+
 
   return (
     <>
@@ -87,6 +91,7 @@ const FlipCard = () => {
           </div>
         ))}
       </section>
+      <button className='btn' onClick={handleClick}>New Game</button>
     
     </>
   )
