@@ -41,3 +41,41 @@ img{
   transform: scale(0.97);
   transition: transform .2s;
 }
+
+
+.frontface,.backface{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border: 2px solid olive;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: palegreen;
+  backface-visibility: hidden;
+
+
+}
+
+.frontface{
+  transform: rotateY(180deg);
+
+}
+
+/* //utility class */
+.card.flip{
+  transform: rotateY(180deg);
+}
+
+.btn
+{
+margin-top: 10px;
+padding: 15px;
+padding-left: 30px;
+padding-right: 30px;
+
+border: none;
+border-radius: 10px;
+background-color: orangered;
+color: white;
+margin-left: 16rem; 
+}
