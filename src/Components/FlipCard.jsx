@@ -2,6 +2,10 @@ import React,{useEffect,useState} from 'react'
 
 const FlipCard = () => {
     const [cards, setCards] = useState([]);
+    const [hasFlippedCards, setHasFlippedCards] = useState(false);
+    const [firstCard, setFirstCard] = useState(null);
+    const [lockBoard, setLockBoard] = useState(false);
+
 
     useEffect(() => {
         const cardData = [
@@ -21,6 +25,38 @@ const FlipCard = () => {
         const shuffledCards = cardData.sort(() => 0.5 - Math.random());
         setCards(shuffledCards);
       }, []);
+
+
+
+
+      const flipCard = (index) => {
+        if (lockBoard) return;
+        const card = document.getElementById(index);
+        card.classList.toggle('flip');
+        if (!hasFlippedCards) {
+          setHasFlippedCards(true);
+          setFirstCard(card);
+         
+          return;
+        }
+        setHasFlippedCards(false);
+        if (firstCard.dataset.name === card.dataset.name) {
+          disableCards(firstCard, card);
+          
+
+        } else {
+          unFlipCards(firstCard, card);
+        }
+      }
+    
+      const disableCards = (firstCard, secondCard) => {
+        firstCard.removeEventListener('click', flipCard);
+        secondCard.removeEventListener('click', flipCard);
+        resetBoard();
+      }
+
+
+
   return (
     <>
     <section className="game">
