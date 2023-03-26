@@ -7,8 +7,6 @@ const FlipCard = () => {
     const [lockBoard, setLockBoard] = useState(false);
     const [turns, setTurns] = useState(0);
 
-
-
     useEffect(() => {
         const cardData = [
           {name: 'zeus', img: 'Assists/zeus.jpg'},
@@ -27,10 +25,7 @@ const FlipCard = () => {
         const shuffledCards = cardData.sort(() => 0.5 - Math.random());
         setCards(shuffledCards);
       }, []);
-
-
-
-
+    
       const flipCard = (index) => {
         if (lockBoard) return;
         const card = document.getElementById(index);
@@ -39,7 +34,6 @@ const FlipCard = () => {
           setHasFlippedCards(true);
           setFirstCard(card);
           setTurns(turns + 1);
-         
           return;
         }
         setHasFlippedCards(false);
@@ -57,7 +51,7 @@ const FlipCard = () => {
         secondCard.removeEventListener('click', flipCard);
         resetBoard();
       }
-
+    
       const unFlipCards = (firstCard, secondCard) => {
         setLockBoard(true);
         setTimeout(() => {
@@ -72,22 +66,23 @@ const FlipCard = () => {
         setLockBoard(false);
         setFirstCard(null);
       }
-
-      function handleClick() {
+    
+   
+    function handleClick() {
         window.location.reload();
       }
-
-
-  return (
-    <>
-    <section className="game">
+    
+    return (
+        <>
+        
+        <section className="game">
         {cards.map((card, index) => (
           <div
             key={index}
             id={index}
             className="card"
             data-name={card.name}
-            
+            onClick={() => flipCard(index)}
           >
             <img src={card.img} alt="" className="frontface" />
             <img src="Assists/greek mythology.jpeg" alt="" className="backface" />
@@ -96,9 +91,9 @@ const FlipCard = () => {
       </section>
       <h3>Turns: {turns}</h3>
       <button className='btn' onClick={handleClick}>New Game</button>
-    
-    </>
-  )
-}
+      
+        </>
+    );
+  }
 
 export default FlipCard
