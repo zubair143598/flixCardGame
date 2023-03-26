@@ -5,6 +5,8 @@ const FlipCard = () => {
     const [hasFlippedCards, setHasFlippedCards] = useState(false);
     const [firstCard, setFirstCard] = useState(null);
     const [lockBoard, setLockBoard] = useState(false);
+    const [turns, setTurns] = useState(0);
+
 
 
     useEffect(() => {
@@ -36,13 +38,14 @@ const FlipCard = () => {
         if (!hasFlippedCards) {
           setHasFlippedCards(true);
           setFirstCard(card);
+          setTurns(turns + 1);
          
           return;
         }
         setHasFlippedCards(false);
         if (firstCard.dataset.name === card.dataset.name) {
           disableCards(firstCard, card);
-          
+          setTurns(turns + 1);
 
         } else {
           unFlipCards(firstCard, card);
@@ -91,6 +94,7 @@ const FlipCard = () => {
           </div>
         ))}
       </section>
+      <h3>Turns: {turns}</h3>
       <button className='btn' onClick={handleClick}>New Game</button>
     
     </>
